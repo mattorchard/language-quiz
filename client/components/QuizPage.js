@@ -1,4 +1,3 @@
-import { Fragment } from "preact";
 import QuizForm from "./QuizForm";
 import { useReducer } from "preact/hooks";
 import {
@@ -18,27 +17,34 @@ const initQuizReducer = () => {
 };
 
 const quizReducer = (state, action) => {
-  if (action === "next") {
+  if (action.type === "next") {
     return {
       ...state,
       currentQuestionIndex: chooseRandomElement(state.questions),
       answered: false,
     };
   }
-  const correct = action === "correct";
+  if (action.type !== "answer") {
+    console.warn("Unexpected action", action);
+    return state;
+  }
   const questions = [...state.questions];
   const currentQuestion = questions[state.currentQuestionIndex];
+  const userAnswer = clean(action.userAnswer);
+  const isCorrect = userAnswer === clean(currentQuestion.answer);
+
   currentQuestion.submissions = [
     ...currentQuestion.submissions,
     {
       at: new Date(),
-      correct,
+      isCorrect,
+      userAnswer,
     },
   ];
   saveQuestions(questions);
   return {
     ...state,
-    correct,
+    isCorrect,
     questions,
     answered: true,
   };
@@ -53,10 +59,7 @@ const clean = text =>
 const QuizPage = () => {
   const [state, dispatch] = useReducer(quizReducer, null, initQuizReducer);
   const currentQuestion = state.questions[state.currentQuestionIndex];
-  const handleAnswer = userAnswer => {
-    const isCorrect = clean(userAnswer) === clean(currentQuestion.answer);
-    dispatch(isCorrect ? "correct" : "incorrect");
-  };
+  const handleAnswer = userAnswer => dispatch({ type: "answer", userAnswer });
 
   return (
     <main>
