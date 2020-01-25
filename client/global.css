@@ -1,0 +1,51 @@
+:root {
+  --color-text-light: rgba(255, 255, 255, 0.85);
+  --color-text-dark: rgba(0, 0, 0, 0.85);
+  --color-background-primary: #282c34;
+  --color-background-secondary: #2c313c;
+  --color-emphasis-primary: #e06c75;
+  --color-emphasis-secondary: #56b6c2;
+  --color-emphasis-tertiary: #d19a66;
+}
+
+html {
+  font-size: 150%;
+  font-family: "Comfortaa", sans-serif;
+  color: var(--color-text-light);
+  background-color: var(--color-background-primary);
+}
+
+a,
+input,
+button {
+  color: inherit;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+button {
+  color: var(--color-emphasis-primary);
+  border: 0.1rem solid;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--color-background-secondary);
+}
+
+input {
+  color: var(--color-emphasis-tertiary);
+  border-bottom: 0.1em solid;
+}
+
+body::-webkit-scrollbar {
+}
+
+body::-webkit-scrollbar-track {
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #4c4f54;
+}

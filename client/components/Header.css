@@ -1,0 +1,34 @@
+.app-header {
+  color: var(--color-emphasis-secondary);
+  border-bottom: 0.1em solid;
+  display: flex;
+  justify-content: space-between;
+}
+.app-header__brand {
+  font-size: 2em;
+}
+.app-header__brand::before {
+  content: "GV4CN";
+}
+@media only screen and (min-width: 900px) {
+  .app-header__brand::before {
+    content: "Greek Verbs for Classics Nerds";
+  }
+}
+
+.app-header__nav {
+  display: flex;
+}
+.app-header__nav__link {
+  padding: 0 0.2em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+.app-header__nav__link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.app-header__nav__link:focus {
+  outline: none;
+}
