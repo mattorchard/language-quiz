@@ -1,15 +1,57 @@
 import { getQuestions } from "../repositories/questionRepository";
 import { useMemo } from "preact/hooks";
+import "./StatsPage.css";
 
-const useStats = () => useMemo(() => getQuestions(), []);
+const getMeta = allSubmissions => {
+  let numAsks = 0;
+  let numCorrect = 0;
+  allSubmissions.forEach(submission => {
+    numAsks++;
+    if (submission.isCorrect) {
+      numCorrect++;
+    }
+  });
+  return { numAsks, numCorrect };
+};
+
+const useStats = () =>
+  useMemo(() => {
+    const questions = getQuestions();
+    const answeredQuestions = questions.filter(
+      question => question.submissions.length > 0
+    );
+    const allSubmissions = answeredQuestions.flatMap(
+      question => question.submissions
+    );
+
+    return {
+      questions,
+      ...getMeta(allSubmissions),
+      answeredQuestions: answeredQuestions.length,
+      unansweredQuestions: questions.length - answeredQuestions.length,
+    };
+  }, []);
 
 const StatsPage = () => {
-  const questions = useStats();
+  const { numCorrect, numAsks, unansweredQuestions } = useStats();
   return (
-    <main>
+    <main className="stats-page">
       <h2>Stats</h2>
-      <p>No Stats are being tracked yet, so here's the raw data being used</p>
-      <pre>{JSON.stringify(questions, null, 2)}</pre>
+      {unansweredQuestions > 0 && (
+        <p className="stats-page__unanswered-warning">
+          {unansweredQuestions} questions have no responses
+        </p>
+      )}
+      <dl>
+        <dt>Total Answers:</dt>
+        <dd className="stats-page__value">{numAsks}</dd>
+        <dt>Total Correct Responses</dt>
+        <dd className="stats-page__value">{numCorrect}</dd>
+        <dt>Average</dt>
+        <dd className="stats-page__value">
+          {Math.round((100 * numCorrect) / numAsks)}%
+        </dd>
+      </dl>
     </main>
   );
 };

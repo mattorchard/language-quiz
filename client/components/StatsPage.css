@@ -1,0 +1,10 @@
+.stats-page {
+  background-color: var(--color-background-secondary);
+}
+.stats-page__value {
+  color: var(--color-emphasis-tertiary);
+  padding-left: 1em;
+}
+.stats-page__unanswered-warning {
+  color: var(--color-emphasis-primary);
+}
