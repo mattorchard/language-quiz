@@ -17,11 +17,11 @@ const QuizForm = ({ prompt, onAnswer, disabled }) => {
   return (
     <form className="quiz-form" onSubmit={handleSubmit} onReset={handleReset}>
       <label className="quiz-form__prompt">
-        Verb
+        Prompt
         <input type="text" disabled value={prompt} />
       </label>
-      <label className="quiz-form__stem">
-        Stem
+      <label className="quiz-form__answer">
+        Answer
         <input
           type="text"
           value={draft}

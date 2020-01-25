@@ -10,7 +10,7 @@
 .quiz-form__prompt {
   align-self: flex-start;
 }
-.quiz-form__stem {
+.quiz-form__answer {
   align-self: center;
   font-size: 150%;
 }
