@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import "./QuizForm.css";
 
 const QuizForm = ({ prompt, onAnswer, disabled }) => {
   const [draft, setDraft] = useState("");
@@ -14,13 +15,13 @@ const QuizForm = ({ prompt, onAnswer, disabled }) => {
   useEffect(() => setDraft(""), [prompt]);
 
   return (
-    <form onSubmit={handleSubmit} onReset={handleReset}>
-      <label>
-        Prompt
+    <form className="quiz-form" onSubmit={handleSubmit} onReset={handleReset}>
+      <label className="quiz-form__prompt">
+        Verb
         <input type="text" disabled value={prompt} />
       </label>
-      <label>
-        Answer
+      <label className="quiz-form__stem">
+        Stem
         <input
           type="text"
           value={draft}
@@ -28,8 +29,14 @@ const QuizForm = ({ prompt, onAnswer, disabled }) => {
           onInput={event => setDraft(event.currentTarget.value)}
         />
       </label>
-      <button type="reset">Clear</button>
-      <button type="submit">Submit</button>
+      <div role="group" className="quiz-form__actions">
+        <button type="reset" disabled={disabled}>
+          Clear
+        </button>
+        <button type="submit" disabled={disabled}>
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

@@ -1,0 +1,30 @@
+.quiz-form {
+  padding: 1em;
+  background-color: var(--color-background-secondary);
+  display: flex;
+  flex-direction: column;
+}
+.quiz-form > * {
+  margin: 0.5em;
+}
+.quiz-form__prompt {
+  align-self: flex-start;
+}
+.quiz-form__stem {
+  align-self: center;
+  font-size: 150%;
+}
+.quiz-form__actions {
+  align-self: flex-end;
+}
+.quiz-form label {
+  display: flex;
+  align-items: flex-end;
+}
+.quiz-form input {
+  text-align: center;
+  margin: 0 0.2em;
+}
+.quiz-form__actions > button {
+  margin: 0 0.2em;
+}

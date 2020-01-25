@@ -5,6 +5,7 @@ import {
   getQuestions,
   saveQuestions,
 } from "../repositories/questionRepository";
+import "./QuizPage.css";
 
 const chooseRandomElement = array => Math.floor(Math.random() * array.length);
 
@@ -59,26 +60,34 @@ const QuizPage = () => {
 
   return (
     <main>
-      <h2>Quiz</h2>
       <QuizForm
         prompt={currentQuestion.prompt}
         onAnswer={handleAnswer}
         disabled={state.answered}
       />
       {state.answered && (
-        <Fragment>
-          {state.correct ? (
-            "🎊 Correct 🎊"
+        <div className="quiz-page__answer-card">
+          {state.isCorrect ? (
+            <span className="quiz-page__answer-card__correct">
+              🎊 Correct 🎊
+            </span>
           ) : (
-            <Fragment>
-              Wrong, the correct answer was{" "}
-              <strong>{currentQuestion.answer}</strong>
-            </Fragment>
+            <div>
+              Incorrect, the correct answer is{" "}
+              <strong className="quiz-page__answer-card__correction">
+                {currentQuestion.answer}
+              </strong>
+            </div>
           )}
-          <button type="button" onClick={() => dispatch("next")}>
+
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "next" })}
+            className="quiz-page__answer-card__next-btn"
+          >
             Next
           </button>
-        </Fragment>
+        </div>
       )}
     </main>
   );

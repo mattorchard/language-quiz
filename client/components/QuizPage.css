@@ -1,0 +1,36 @@
+.quiz-page__answer-card {
+  padding: 1em;
+  background-color: var(--color-background-secondary);
+  animation: fade-in 1s ease 1, slide-in 1s ease 1;
+  animation-fill-mode: forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+.quiz-page__answer-card__correct {
+  font-size: 150%;
+}
+.quiz-page__answer-card__correction {
+  color: var(--color-emphasis-quaternary);
+}
+.quiz-page__answer-card__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.quiz-page__answer-card__next-btn {
+  margin: 0.2em;
+  align-self: flex-end;
+}

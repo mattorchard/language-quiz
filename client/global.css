@@ -6,10 +6,11 @@
   --color-emphasis-primary: #e06c75;
   --color-emphasis-secondary: #56b6c2;
   --color-emphasis-tertiary: #d19a66;
+  --color-emphasis-quaternary: #c678dd;
 }
 
 html {
-  font-size: 150%;
+  font-size: 125%;
   font-family: "Comfortaa", sans-serif;
   color: var(--color-text-light);
   background-color: var(--color-background-primary);
@@ -29,15 +30,10 @@ button {
   border: 0.1rem solid;
 }
 
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: var(--color-background-secondary);
-}
-
 input {
   color: var(--color-emphasis-tertiary);
   border-bottom: 0.1em solid;
+  width: 100%;
 }
 
 body::-webkit-scrollbar {
@@ -48,4 +44,14 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #4c4f54;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto 0;
+  padding: 1em;
+}
+
+h2 {
+  font-size: 150%;
 }
