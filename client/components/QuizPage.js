@@ -5,14 +5,13 @@ import {
   saveQuestions,
 } from "../repositories/questionRepository";
 import "./QuizPage.css";
-
-const chooseRandomElement = array => Math.floor(Math.random() * array.length);
+import chooseQuestion from "../helpers/chooseQuestion";
 
 const initQuizReducer = () => {
   const questions = getQuestions();
   return {
     questions,
-    currentQuestionIndex: chooseRandomElement(questions),
+    currentQuestionIndex: chooseQuestion(questions),
   };
 };
 
@@ -20,7 +19,7 @@ const quizReducer = (state, action) => {
   if (action.type === "next") {
     return {
       ...state,
-      currentQuestionIndex: chooseRandomElement(state.questions),
+      currentQuestionIndex: chooseQuestion(state.questions),
       answered: false,
     };
   }
