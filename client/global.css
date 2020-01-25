@@ -10,7 +10,7 @@
 }
 
 html {
-  font-size: 125%;
+  font-size: calc(8px + 2vmin);
   font-family: "Comfortaa", sans-serif;
   color: var(--color-text-light);
   background-color: var(--color-background-primary);
